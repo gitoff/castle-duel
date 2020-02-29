@@ -129,7 +129,9 @@ function applyCard () {
 }
 
 function nextTurn () {
-  // TODO
+  state.turn ++
+  state.currentPlayerIndex = state.currentOpponentId
+  state.activeOverlay = 'player-turn'
 }
   
 function endGame () {
