@@ -139,7 +139,7 @@ function nextTurn () {
 }
   
 function endGame () {
-  // TODO
+  state.activeOverlay = 'game-over'
 }
 
 function newTurn () {
