@@ -5,7 +5,7 @@ new Vue ({
   data: state,
 
   template: `<div id="#app">
-    Hello world!
+    <top-bar/>
   </div>`,
 
   mounted () {
