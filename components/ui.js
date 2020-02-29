@@ -19,7 +19,8 @@ Vue.component('top-bar', {
 Vue.component('card', {
   props: ['def'],
 
-  template: `<div class="card" :class="'type-' + def.type" @click="play">
+  template: `
+  <div class="card" :class="'type-' + def.type" @click="play">
     <div class="title">{{ def.title }}</div>
     <img class="separator" src="svg/card-separator.svg" />
     <div class="description">
@@ -28,12 +29,14 @@ Vue.component('card', {
     <div class="note" v-if="def.note">
       <div v-html="def.note"></div>
     </div>
-  </div>`,
+  </div>
+  `,
 
   methods: {
     play () {
+      console.log('Card clicked! before emit')
       this.$emit('play')
-    }
+    },
   },
 })
 
@@ -44,7 +47,13 @@ Vue.component('hand', {
     <!-- wrapper helps to position and animate cards -->
     <div class="wrapper">
       <!-- Cards -->
-      <card v-for="card of cards" :def="card.def" />
+      <card v-for="card of cards" :def="card.def" @play="handlePlay(card)" />
     </div>
   </div>`,
+
+  methods: {
+    handlePlay (card) {
+      this.$emit('card-play', card)
+    }
+  },
 })

@@ -4,10 +4,13 @@ new Vue ({
 
   data: state,
 
-  template: `<div id="#app">
+  // testing with @click="handlePlay"
+  // works on top-bar but doesn't work on hand
+  template: `
+  <div id="#app" @click="handlePlay">
     <top-bar :turn="turn" :current-player-index="currentPlayerIndex" :players="players" />
     <transition name="hand">
-      <hand :cards="testHand" v-if="!activeOverlay" />
+      <hand :cards="testHand" v-if="!activeOverlay" @card-play="testPlayCard" />
     </transition>
   </div>`,
 
@@ -48,6 +51,13 @@ new Vue ({
         // Definition object
         def: cards[randomId],
       }
+    },
+
+    testPlayCard (card) {
+      // Remove the card from hand
+      console.log('calling testPlayCard')
+      const index = this.testHand.indexOf(card)
+      this.testHand.splice(index, 1)
     },
   },
 
