@@ -18,11 +18,11 @@ Vue.component('castle-banners', {
     <!-- Food -->
     <img class="food-icon" src="svg/food-icon.svg" />
     <bubble type="food" :value="player.food" :ratio="foodRatio" />
-    <!-- Banner bar here -->
+    <banner-bar class="food-bar" color="#288339" :ratio="foodRatio" />
     <!-- Health -->
     <img class="health-icon" src="svg/health-icon.svg" />
     <bubble type="health" :value="player.health" :ratio="healthRatio" />
-    <!-- Banner bar here -->
+    <banner-bar class="health-bar" color="#9b2e2e" :ratio="healthRatio" />
   </div>`,
   props: ['player'],
 
@@ -51,6 +51,16 @@ Vue.component('bubble', {
       return {
         top: (this.ratio * 220 + 40) * state.worldRatio + 'px',
       }
+    },
+  },
+})
+
+Vue.component('banner-bar', {
+  template: '#banner',
+  props: ['color', 'ratio'],
+  computed: {
+    height () {
+      return 220 * this.ratio + 40
     },
   },
 })
