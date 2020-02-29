@@ -13,7 +13,7 @@ new Vue ({
       <hand :cards="testHand" v-if="!activeOverlay" @card-play="testPlayCard" />
     </transition>
     <transition name="zoom">
-      <overlay v-if="activeOverlay">
+      <overlay v-if="activeOverlay" :key="activeOverlay">
         <component :is="'overlay-content-' + activeOverlay"
           :player="currentPlayer" :opponent="currentOpponent"
           :players="players" />
