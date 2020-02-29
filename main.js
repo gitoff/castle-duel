@@ -19,11 +19,13 @@ new Vue ({
     </div>
 
     <transition name="hand">
-      <hand :cards="testHand" v-if="!activeOverlay" @card-play="testPlayCard" />
+      <hand :cards="currentHand" v-if="!activeOverlay" @card-play="testPlayCard" />
     </transition>
+    
     <transition name="fade">
       <div class="overlay-background" v-if="activeOverlay" />
     </transition>
+    
     <transition name="zoom">
       <overlay v-if="activeOverlay" :key="activeOverlay">
         <component :is="'overlay-content-' + activeOverlay"
@@ -42,19 +44,6 @@ new Vue ({
   methods: {
     handlePlay () {
       console.log('You played a card!')
-    },
-
-    createTestHand () {
-      const cards = []
-      // Get the possible ids
-      const ids = Object.keys(cards)
-
-      // Draw 5 cards
-      for (let i = 0; i < 5; i++) {
-        cards.push(this.testDrawCard())
-      }
-
-      return cards
     },
 
     testDrawCard () {
@@ -78,10 +67,6 @@ new Vue ({
       const index = this.testHand.indexOf(card)
       this.testHand.splice(index, 1)
     },
-  },
-
-  created () {
-    this.testHand = this.createTestHand()
   },
 
   mounted () {
