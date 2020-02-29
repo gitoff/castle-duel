@@ -44,6 +44,12 @@ var state = {
   // 0 or 1 to choose who goes first
   currentPlayerIndex: Math.round(Math.random()),
   testHand: [],
+  // The drawPile property is the pile of cards that can be drawn by the players. 
+  // It is initialized with the pile object defined in the cards.js file.
+  drawPile: pile,
+  // All cards played will go in here.
+  // When drawPile is empty, it will refill with discardPile
+  discardPile: {},
 
   get currentPlayer () {
     return state.players[state.currentPlayerIndex]
