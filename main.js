@@ -9,6 +9,13 @@ new Vue ({
   template: `
   <div id="#app">
     <top-bar :turn="turn" :current-player-index="currentPlayerIndex" :players="players" />
+    
+    <div class="world">
+      <castle v-for="(player, index) in players" :player="player"
+        :index="index" />
+      <div class="land" />
+    </div>
+
     <transition name="hand">
       <hand :cards="testHand" v-if="!activeOverlay" @card-play="testPlayCard" />
     </transition>
