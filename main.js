@@ -27,7 +27,7 @@ new Vue ({
 
       // Draw 5 cards
       for (let i = 0; i < 5; i++) {
-        cards.push(testDrawCard())
+        cards.push(this.testDrawCard())
       }
 
       return cards
