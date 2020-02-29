@@ -6,7 +6,7 @@ new Vue ({
 
   template: `<div id="#app">
     <top-bar :turn="turn" :current-player-index="currentPlayerIndex" :players="players" />
-    <card :def="testCard" @click.native="handlePlay" />
+    <card :def="testCard" @play="handlePlay" />
   </div>`,
 
   computed: {
