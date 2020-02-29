@@ -12,6 +12,9 @@ new Vue ({
     <transition name="hand">
       <hand :cards="testHand" v-if="!activeOverlay" @card-play="testPlayCard" />
     </transition>
+    <overlay>
+      Hello World!
+    </overlay>
   </div>`,
 
   computed: {

@@ -16,9 +16,29 @@ var state = {
   players: [
     {
       name: 'Anne of Cleves',
+      // Starting stats
+      food: 10,
+      health: 10,
+      // Is skipping is next turn
+      skipTurn: false,
+      // Skiped turn last time
+      skippedTurn: false,
+      hand: [],
+      lastPlayedCardId: null,
+      dead: false,
     },
     {
       name: 'William the Bald',
+      // Starting stats
+      food: 10,
+      health: 10,
+      // Is skipping is next turn
+      skipTurn: false,
+      // Skiped turn last time
+      skippedTurn: false,
+      hand: [],
+      lastPlayedCardId: null,
+      dead: false,
     },
   ],
   // 0 or 1 to choose who goes first

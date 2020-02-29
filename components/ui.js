@@ -59,3 +59,20 @@ Vue.component('hand', {
     }
   },
 })
+
+Vue.component('overlay', {
+  template: `
+  <div class="overlay" @click="handleClick">
+    <div class="content">
+      <!-- Slot will be here -->
+      <slot />
+    </div>
+  </div>
+  `,
+
+  methods: {
+    handleClick () {
+      this.$emit('close')
+    },
+  },
+})
