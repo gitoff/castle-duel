@@ -21,4 +21,5 @@ var state = {
   ],
   // 0 or 1 to choose who goes first
   currentPlayerIndex: Math.round(Math.random()),
+  testHand: [],
 }

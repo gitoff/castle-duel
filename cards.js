@@ -1,4 +1,6 @@
 /* 
+Card Definitions
+
 id : Unique for each card
 type : Changes the color background to help distinguish the cards from each
 other
@@ -6,6 +8,7 @@ title : The displayed name of the card
 description : An HTML text explaining what the card does
 note : An optional flavor text, in HTML too
 play : The function we will call when the card is played
+
  */
 let cards = [
   {
