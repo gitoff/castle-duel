@@ -11,8 +11,10 @@ new Vue ({
     <top-bar :turn="turn" :current-player-index="currentPlayerIndex" :players="players" />
     
     <div class="world">
-      <castle v-for="(player, index) in players" :player="player"
-        :index="index" />
+      <div class="clouds">
+        <cloud v-for="index in 10" :type="(index - 1) % 5 + 1" />
+      </div>
+        <castle v-for="(player, index) in players" :player="player" :index="index" />
       <div class="land" />
     </div>
 

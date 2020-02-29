@@ -120,5 +120,36 @@ Vue.component('cloud', {
       const width = this.$el.clientWidth
       this.setPosition(-width, 0)
     },
+
+    startAnimation (delay = 0) {
+      const vm = this
+      // Element width
+      const width = this.$el.clientWidth
+      // Random animation duration
+      const { min, max } = cloudAnimationDurations
+      const animationDuration = Math.random() * (max - min) + min
+      // Bing faster clouds forward
+      this.style.zIndex = Math.round(max - animationDuration)
+      
+      // Random position
+      const top = Math.random() * (window.innerHeight * 0.3)
+
+      new TWEEN.Tween({ value: -width })
+        .to({ value: window.innerWidth }, animationDuration)
+        .delay(delay)
+        .onUpdate(function () {
+          vm.setPosition(this.value, top)
+        })
+        .onComplete(() => {
+          // With a random delay
+          this.startAnimation(Math.random() * 10000)
+        })
+        .start()
+    },
+  },
+  mounted () {
+    // We start the animation with a negative delay
+    // So it begins midway
+    this.startAnimation(-Math.random() * cloudAnimationDurations.min)
   },
 })
