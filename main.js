@@ -12,11 +12,13 @@ new Vue ({
     <transition name="hand">
       <hand :cards="testHand" v-if="!activeOverlay" @card-play="testPlayCard" />
     </transition>
-    <overlay v-if="activeOverlay">
-      <component :is="'overlay-content-' + activeOverlay"
-        :player="currentPlayer" :opponent="currentOpponent"
-        :players="players" />
-    </overlay>
+    <transition name="zoom">
+      <overlay v-if="activeOverlay">
+        <component :is="'overlay-content-' + activeOverlay"
+          :player="currentPlayer" :opponent="currentOpponent"
+          :players="players" />
+      </overlay>
+    </transition>
   </div>`,
 
   computed: {
