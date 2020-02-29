@@ -19,7 +19,7 @@ new Vue ({
     </div>
 
     <transition name="hand">
-      <hand :cards="currentHand" v-if="!activeOverlay" @card-play="testPlayCard" />
+      <hand :cards="currentHand" v-if="!activeOverlay" @card-play="handlePlayCard" />
     </transition>
     
     <transition name="fade">
@@ -66,11 +66,8 @@ new Vue ({
       }
     },
 
-    testPlayCard (card) {
-      // Remove the card from hand
-      console.log('calling testPlayCard')
-      const index = this.testHand.indexOf(card)
-      this.testHand.splice(index, 1)
+    handlePlayCard (card) {
+      playCard(card)
     },
   },
 
@@ -94,4 +91,16 @@ function animate(time) {
 
 function beginGame () {
   state.players.forEach(drawInitialHand)
+}
+
+function playCard (card) {
+  if (state.canPlay) {
+    state.canPlay = false
+    currentPlayingCard = card
+    // Remove the card from player hand
+    const index = state.currentPlayer.hand.indexOf(card)
+    state.currentPlayer.hand.splice(index, 1)
+    // Add the card to the discard pile
+    addCardToPile(state.discardPile, card.id)
+  }
 }
