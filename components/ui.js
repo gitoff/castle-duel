@@ -47,7 +47,9 @@ Vue.component('hand', {
     <!-- wrapper helps to position and animate cards -->
     <div class="wrapper">
       <!-- Cards -->
-      <card v-for="card of cards" :def="card.def" @play="handlePlay(card)" />
+      <transition-group name="card" tag="div" class="cards">
+        <card v-for="card of cards" :def="card.def" :key="card.uid" @play="handlePlay(card)" />
+      </transition-group>
     </div>
   </div>`,
 
