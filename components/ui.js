@@ -48,7 +48,7 @@ Vue.component('hand', {
     <div class="wrapper">
       <!-- Cards -->
       <transition-group name="card" tag="div" class="cards" 
-        @after-leave="handleLeaveTransitionEnd>
+        @after-leave="handleLeaveTransitionEnd">
           <card v-for="card of cards" :def="card.def" :key="card.uid" @play="handlePlay(card)" />
       </transition-group>
     </div>
