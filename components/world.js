@@ -2,6 +2,11 @@
 Game World and Scenery
  */
 
+const cloudAnimationDurations = {
+  min: 10000, // 10 sec
+  max: 50000, // 50 sec
+}
+
 Vue.component('castle', {
   template: `
   <div class="castle" :class="'player-' + index">
@@ -84,6 +89,36 @@ Vue.component('banner-bar', {
           vm.height = this.value.toFixed(0)
         })
         .start()
+    },
+  },
+})
+
+Vue.component('cloud', {
+  template: `
+  <div class="cloud" :class="'cloud-' + type" :style="style">
+    <img :src="'svg/cloud' + type + '.svg'" @load="initPosition" />
+  </div>`,
+  props: ['type'],
+  
+  data () {
+    return {
+      style: {
+        transform: 'none',
+        zIndex: 0,
+      },
+    }
+  },
+
+  methods: {
+    setPosition (left, top) {
+      // Use transform for better performance
+      this.style.transform = `translate(${left}px, ${top}px)`
+    },
+
+    initPosition () {
+      // Element width
+      const width = this.$el.clientWidth
+      this.setPosition(-width, 0)
     },
   },
 })
