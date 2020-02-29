@@ -47,8 +47,9 @@ Vue.component('hand', {
     <!-- wrapper helps to position and animate cards -->
     <div class="wrapper">
       <!-- Cards -->
-      <transition-group name="card" tag="div" class="cards">
-        <card v-for="card of cards" :def="card.def" :key="card.uid" @play="handlePlay(card)" />
+      <transition-group name="card" tag="div" class="cards" 
+        @after-leave="handleLeaveTransitionEnd>
+          <card v-for="card of cards" :def="card.def" :key="card.uid" @play="handlePlay(card)" />
       </transition-group>
     </div>
   </div>`,
@@ -56,7 +57,10 @@ Vue.component('hand', {
   methods: {
     handlePlay (card) {
       this.$emit('card-play', card)
-    }
+    },
+    handleLeaveTransitionEnd () {
+      this.$emit('card-leave-end')
+    },
   },
 })
 
