@@ -50,6 +50,8 @@ var state = {
   // All cards played will go in here.
   // When drawPile is empty, it will refill with discardPile
   discardPile: {},
+  // No cheating. Prevent player from playing a card if already pplayed
+  canPlay: false,
 
   get currentPlayer () {
     return state.players[state.currentPlayerIndex]

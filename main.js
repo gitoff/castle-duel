@@ -7,7 +7,7 @@ new Vue ({
   // testing with @click="handlePlay"
   // works on top-bar but doesn't work on hand
   template: `
-  <div id="#app">
+  <div id="#app" :class="cssClass">
     <top-bar :turn="turn" :current-player-index="currentPlayerIndex" :players="players" />
     
     <div class="world">
@@ -36,6 +36,11 @@ new Vue ({
   </div>`,
 
   computed: {
+    cssClass () {
+      return {
+        'can-play': this.canPlay,
+      }
+    },
     testCard () {
       return cards.archers
     },
