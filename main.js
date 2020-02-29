@@ -13,14 +13,9 @@ new Vue ({
       <hand :cards="testHand" v-if="!activeOverlay" @card-play="testPlayCard" />
     </transition>
     <overlay v-if="activeOverlay">
-      <overlay-content-player-turn
-        v-if="activeOverlay === 'player-turn'"
-        :player="currentPlayer" />
-      <overlay-content-last-play
-        v-else-if="activeOverlay === 'last-play'"
-        :opponent="currentOpponent" />
-      <overlay-content-game-over
-        v-else-if="activeOverlay === 'game-over'" />
+      <component :is="'overlay-content-' + activeOverlay"
+        :player="currentPlayer" :opponent="currentOpponent"
+        :players="players" />
     </overlay>
   </div>`,
 
